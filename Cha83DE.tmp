@@ -1,0 +1,251 @@
+[gd_scene load_steps=16 format=3 uid="uid://byhjduhe6sr2"]
+
+[ext_resource type="PackedScene" uid="uid://blghe3xfy04g5" path="res://3DModels/CharacterTemplateModel.fbx" id="1_alnb5"]
+[ext_resource type="Material" uid="uid://bmm4dn8m8rav5" path="res://3DModels/Eyes/EyeMaterial.tres" id="2_gwntk"]
+[ext_resource type="Material" uid="uid://b6q7ie6bbuj2i" path="res://3DModels/EyeBrows/brow1.tres" id="3_v11on"]
+[ext_resource type="Material" uid="uid://1lybsmdkhhfw" path="res://3DModels/Noses/nose1.tres" id="4_md6hq"]
+[ext_resource type="Material" uid="uid://c48vabvepktwy" path="res://3DModels/Mouths/mouth1.tres" id="4_pk71p"]
+[ext_resource type="Material" uid="uid://8k484pq2seug" path="res://3DModels/Hair/hair1.tres" id="6_h27ow"]
+[ext_resource type="Texture2D" uid="uid://b12a5mkwo0ngr" path="res://3DModels/Eyes/placeholder.png" id="7_r12vf"]
+[ext_resource type="Texture2D" uid="uid://bwoy3og2iirgk" path="res://3DModels/EyeBrows/brow1.png" id="8_nkgtn"]
+[ext_resource type="Texture2D" uid="uid://cb2ngq2br5dti" path="res://3DModels/Noses/nose1.png" id="9_hlroq"]
+[ext_resource type="Texture2D" uid="uid://btvm60hvwfclw" path="res://3DModels/Mouths/mouth1.png" id="10_ffbx7"]
+[ext_resource type="Script" path="res://CharacterCreatorEye.gd" id="11_ju7vd"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qyxfe"]
+sky_top_color = Color(0.0588235, 0.439216, 0.835294, 1)
+sky_horizon_color = Color(0.807843, 0.619608, 0.282353, 1)
+sky_curve = 0.0652914
+sky_cover_modulate = Color(0.439216, 0.396078, 0.870588, 1)
+ground_bottom_color = Color(0.282353, 0.243137, 0.0745098, 1)
+ground_horizon_color = Color(0.921569, 0.552941, 0.211765, 1)
+ground_curve = 0.00933032
+sun_curve = 0.235375
+
+[sub_resource type="Sky" id="Sky_a74e8"]
+sky_material = SubResource("ProceduralSkyMaterial_qyxfe")
+
+[sub_resource type="Environment" id="Environment_di4fp"]
+background_mode = 2
+background_color = Color(0.211765, 0.282353, 0.411765, 1)
+sky = SubResource("Sky_a74e8")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_w3av8"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.871777, -0.432421, 0.230253, -0.408344, 0.901054, 0.146142, -0.270666, 0.0333812, -0.962095, 0.65353, 5.94761, -12.5577)
+light_energy = 2.131
+light_indirect_energy = 3.586
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_di4fp")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.979575, 8.56372e-08, 0.201078, -8.74228e-08, 1, 0, 0.201078, 1.75788e-08, -0.979575, -0.045, 3.402, -6.102)
+
+[node name="Head" parent="." instance=ExtResource("1_alnb5")]
+transform = Transform3D(0.978274, 0, 0.207314, 0, 1, 0, -0.207314, 0, 0.978274, 1.48662, 0, 0)
+
+[node name="Node" type="Node" parent="Head"]
+
+[node name="LeftEye" type="MeshInstance3D" parent="Head/Node"]
+transform = Transform3D(-0.239945, 3.10458e-05, 0.00515591, -0.005156, -0.00144478, -0.23994, 0, -0.239996, 0.00144511, -0.34, 3.201, -4.18688)
+visible = false
+material_override = ExtResource("2_gwntk")
+mesh = SubResource("PlaneMesh_w3av8")
+skeleton = NodePath("../../..")
+
+[node name="RightBrow" type="MeshInstance3D" parent="Head/Node"]
+transform = Transform3D(-0.135071, -0.00130921, -0.02825, 0.0282455, -0.0130847, -0.134443, -0.0014031, -0.137372, 0.013075, 0.189887, 3.47367, -4.18401)
+visible = false
+material_override = ExtResource("3_v11on")
+mesh = SubResource("PlaneMesh_w3av8")
+skeleton = NodePath("../RightEye")
+
+[node name="LeftBrow" type="MeshInstance3D" parent="Head/Node"]
+transform = Transform3D(0.136924, 0.00301048, 0.0169358, 0.017144, -0.0128008, -0.136331, 0.00140312, -0.137372, 0.013075, -0.182109, 3.47367, -4.18401)
+visible = false
+material_override = ExtResource("3_v11on")
+mesh = SubResource("PlaneMesh_w3av8")
+skeleton = NodePath("../RightEye")
+
+[node name="Nose" type="MeshInstance3D" parent="Head/Node"]
+transform = Transform3D(0.138917, 0.00322522, -0.00354679, -0.00386225, 0.0143755, -0.138201, -0.00283986, 0.138217, 0.0144566, -0.00685608, 2.96602, -4.24562)
+visible = false
+material_override = ExtResource("4_md6hq")
+mesh = SubResource("PlaneMesh_w3av8")
+skeleton = NodePath("../RightEye")
+
+[node name="Mouth" type="MeshInstance3D" parent="Head/Node"]
+transform = Transform3D(0.137978, 0.00120765, -0.00211878, -0.00199472, -0.0130945, -0.137363, 0.00140312, -0.137372, 0.013075, -0.0146262, 2.77155, -4.19622)
+visible = false
+material_override = ExtResource("4_pk71p")
+mesh = SubResource("PlaneMesh_w3av8")
+skeleton = NodePath("../RightEye")
+
+[node name="Hair" type="MeshInstance3D" parent="Head/Node"]
+transform = Transform3D(-0.807929, -0.00753084, 0.00757579, -0.00775783, 0.0197397, -0.807722, -0.00734314, 0.807724, 0.0198103, -0.00643927, 3.46155, -4.21178)
+visible = false
+material_override = ExtResource("6_h27ow")
+mesh = SubResource("PlaneMesh_w3av8")
+skeleton = NodePath("../RightEye")
+
+[node name="RightEye" type="MeshInstance3D" parent="Head/Node"]
+transform = Transform3D(0.239989, 1.35183e-05, 0.00225039, 0.00225043, -0.00144575, -0.239985, -3.57628e-08, -0.239996, 0.00144582, 0.34, 3.202, -4.18688)
+visible = false
+material_override = ExtResource("2_gwntk")
+mesh = SubResource("PlaneMesh_w3av8")
+skeleton = NodePath("../../..")
+
+[node name="Decals" type="Node3D" parent="Head"]
+
+[node name="RightEye" type="Decal" parent="Head/Decals"]
+transform = Transform3D(1, 7.45058e-08, -3.25675e-15, 0, -4.37114e-08, -1, -7.45058e-08, 1, -4.37114e-08, 0.329397, 3.17489, -3.7613)
+size = Vector3(0.5, 0.948047, 0.5)
+texture_albedo = ExtResource("7_r12vf")
+emission_energy = 0.0
+upper_fade = 1.70843e-05
+lower_fade = 2.4161e-05
+
+[node name="LeftEye" type="Decal" parent="Head/Decals"]
+transform = Transform3D(-1, 1.19209e-07, 5.21079e-15, 0, 4.37114e-08, -1, 1.19209e-07, 1, 4.37114e-08, -0.341514, 3.16788, -3.77676)
+size = Vector3(0.5, 0.948047, 0.5)
+texture_albedo = ExtResource("7_r12vf")
+emission_energy = 0.0
+upper_fade = 1.70843e-05
+lower_fade = 2.4161e-05
+
+[node name="LeftBrow" type="Decal" parent="Head/Decals"]
+transform = Transform3D(1, 0, 0, 0, 4.37114e-08, -1, 0, 1, 4.37114e-08, -0.187303, 3.46782, -3.75813)
+size = Vector3(0.25, 0.941699, 0.25)
+texture_albedo = ExtResource("8_nkgtn")
+emission_energy = 0.0
+upper_fade = 1.70843e-05
+lower_fade = 2.4161e-05
+
+[node name="RightBrow" type="Decal" parent="Head/Decals"]
+transform = Transform3D(-1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.174638, 3.46782, -3.75471)
+size = Vector3(0.25, 0.934863, 0.25)
+texture_albedo = ExtResource("8_nkgtn")
+emission_energy = 0.0
+upper_fade = 1.70843e-05
+lower_fade = 2.4161e-05
+
+[node name="Nose" type="Decal" parent="Head/Decals"]
+transform = Transform3D(-1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00976357, 2.96171, -3.75963)
+size = Vector3(0.25, 0.951953, 0.25)
+texture_albedo = ExtResource("9_hlroq")
+emission_energy = 0.0
+upper_fade = 1.70843e-05
+lower_fade = 2.4161e-05
+
+[node name="Mouth" type="Decal" parent="Head/Decals"]
+transform = Transform3D(-1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0.00349125, 2.75241, -3.76325)
+size = Vector3(0.25, 0.951953, 0.25)
+texture_albedo = ExtResource("10_ffbx7")
+emission_energy = 0.0
+upper_fade = 1.70843e-05
+lower_fade = 2.4161e-05
+
+[node name="UI" type="Node3D" parent="."]
+script = ExtResource("11_ju7vd")
+
+[node name="EyeBtn" type="Button" parent="UI"]
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 229.0
+offset_bottom = 74.0
+text = "Eyes"
+
+[node name="EyeOptions" type="ItemList" parent="UI/EyeBtn"]
+layout_mode = 0
+offset_left = 232.0
+offset_top = -1.0
+offset_right = 645.0
+offset_bottom = 274.0
+
+[node name="EyeDistance" type="Label" parent="UI/EyeBtn/EyeOptions"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 14.0
+offset_right = 113.0
+offset_bottom = 37.0
+text = "Eye Distance
+"
+
+[node name="HSlider" type="HSlider" parent="UI/EyeBtn/EyeOptions/EyeDistance"]
+layout_mode = 0
+offset_left = 108.0
+offset_top = 5.0
+offset_right = 383.0
+offset_bottom = 21.0
+min_value = -0.25
+max_value = 0.15
+step = 0.025
+value = -0.25
+ticks_on_borders = true
+
+[node name="EyeSize" type="Label" parent="UI/EyeBtn/EyeOptions"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = 37.0
+offset_right = 113.0
+offset_bottom = 60.0
+text = "Eye Size
+"
+
+[node name="EyeSize" type="HSlider" parent="UI/EyeBtn/EyeOptions/EyeSize"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 7.0
+offset_right = 382.0
+offset_bottom = 23.0
+min_value = -0.5
+max_value = 0.5
+step = 0.01
+value = 0.5
+
+[node name="EyeRotation" type="Label" parent="UI/EyeBtn/EyeOptions"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 60.0
+offset_right = 114.0
+offset_bottom = 83.0
+text = "Eye Rotation
+"
+
+[node name="EyeRotation" type="HSlider" parent="UI/EyeBtn/EyeOptions/EyeRotation"]
+layout_mode = 0
+offset_left = 106.0
+offset_top = 5.0
+offset_right = 381.0
+offset_bottom = 21.0
+min_value = -90.0
+max_value = 90.0
+
+[node name="EyeColor" type="Label" parent="UI/EyeBtn/EyeOptions"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 82.0
+offset_right = 114.0
+offset_bottom = 105.0
+text = "Eye Color
+"
+
+[node name="ColorPickerButton" type="ColorPickerButton" parent="UI/EyeBtn/EyeOptions/EyeColor"]
+layout_mode = 0
+offset_left = 347.0
+offset_top = 5.0
+offset_right = 385.0
+offset_bottom = 40.0
+
+[connection signal="pressed" from="UI/EyeBtn" to="UI" method="_on_eye_btn_pressed"]
+[connection signal="changed" from="UI/EyeBtn/EyeOptions/EyeDistance/HSlider" to="UI" method="_on_h_slider_changed"]
+[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/EyeDistance/HSlider" to="UI" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/EyeSize/EyeSize" to="UI" method="_on_eye_size_value_changed"]
+[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/EyeRotation/EyeRotation" to="UI" method="_on_eye_rotation_value_changed"]

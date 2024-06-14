@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://8k484pq2seug"]
+
+[ext_resource type="Texture2D" uid="uid://boo2p6655axoc" path="res://3DModels/Hair/hair1.png" id="1_8dpjg"]
+
+[resource]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+cull_mode = 2
+albedo_texture = ExtResource("1_8dpjg")
