@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://byhjduhe6sr2"]
+[gd_scene load_steps=21 format=3 uid="uid://byhjduhe6sr2"]
 
 [ext_resource type="PackedScene" uid="uid://blghe3xfy04g5" path="res://3DModels/CharacterTemplateModel.fbx" id="1_alnb5"]
-[ext_resource type="Script" path="res://3DModels/deleteThis.gd" id="2_6vxyh"]
 [ext_resource type="Material" uid="uid://bmm4dn8m8rav5" path="res://3DModels/Eyes/EyeMaterial.tres" id="2_gwntk"]
 [ext_resource type="Material" uid="uid://b6q7ie6bbuj2i" path="res://3DModels/EyeBrows/brow1.tres" id="3_v11on"]
 [ext_resource type="Material" uid="uid://1lybsmdkhhfw" path="res://3DModels/Noses/nose1.tres" id="4_md6hq"]
@@ -54,7 +53,6 @@ transform = Transform3D(0.979575, 8.56372e-08, 0.201078, -8.74228e-08, 1, 0, 0.2
 
 [node name="Head" parent="." instance=ExtResource("1_alnb5")]
 transform = Transform3D(0.978274, 0, 0.207314, 0, 1, 0, -0.207314, 0, 0.978274, 1.48662, 0, 0)
-script = ExtResource("2_6vxyh")
 
 [node name="Node" type="Node" parent="Head"]
 
@@ -142,16 +140,16 @@ upper_fade = 1.70843e-05
 lower_fade = 2.4161e-05
 
 [node name="LeftBrow" type="Decal" parent="Head/Decals"]
-transform = Transform3D(-1, 2.98023e-08, 0, 0, -1.19249e-08, -1, 2.98023e-08, 1, -1.19249e-08, 0.185592, 3.409, -3.8542)
-size = Vector3(0.25, 0.935693, 0.25)
+transform = Transform3D(1, 1.49012e-08, 8.88178e-16, 0, 4.37114e-08, -1, -1.49012e-08, 1, 4.37114e-08, -0.187303, 3.46782, -3.75813)
+size = Vector3(0.25, 0.941699, 0.25)
 texture_albedo = ExtResource("8_nkgtn")
 emission_energy = 0.0
 upper_fade = 1.70843e-05
 lower_fade = 2.4161e-05
 
 [node name="RightBrow" type="Decal" parent="Head/Decals"]
-transform = Transform3D(1, 2.98023e-08, -2.66454e-15, 0, -4.37114e-08, -1, -2.98023e-08, 1, -4.37114e-08, -0.186, 3.409, -3.851)
-size = Vector3(0.25, 0.935693, 0.25)
+transform = Transform3D(-1, 1.49012e-08, -8.88178e-16, 0, -4.37114e-08, -1, 1.49012e-08, 1, -4.37114e-08, 0.174638, 3.46782, -3.75471)
+size = Vector3(0.25, 0.934863, 0.25)
 texture_albedo = ExtResource("8_nkgtn")
 emission_energy = 0.0
 upper_fade = 1.70843e-05
@@ -403,7 +401,7 @@ offset_left = 138.0
 offset_top = 6.0
 offset_right = 389.0
 offset_bottom = 22.0
-min_value = -2.0
+min_value = 0.1
 max_value = 2.0
 step = 0.1
 value = 1.1
@@ -449,7 +447,7 @@ offset_bottom = 23.0
 min_value = 0.1
 max_value = 2.0
 step = 0.1
-value = 1.0
+value = 0.1
 
 [node name="StretchMouth" type="Label" parent="UI/MouthBtn/MouthOptions"]
 layout_mode = 0
@@ -468,7 +466,7 @@ offset_bottom = 19.0
 min_value = 0.1
 max_value = 2.0
 step = 0.1
-value = 1.0
+value = 0.1
 
 [node name="NoseBtn" type="Button" parent="UI"]
 offset_left = 18.0
@@ -676,10 +674,10 @@ offset_left = 138.0
 offset_top = 6.0
 offset_right = 389.0
 offset_bottom = 22.0
-min_value = 0.1
+min_value = 0.5
 max_value = 2.0
 step = 0.1
-value = 0.1
+value = 1.0
 
 [node name="Rotation" type="Label" parent="UI/EyeBrowBtn/Options"]
 layout_mode = 0
@@ -723,7 +721,7 @@ offset_bottom = 23.0
 min_value = 0.1
 max_value = 2.0
 step = 0.1
-value = 1.0
+value = 0.1
 
 [node name="Stretch" type="Label" parent="UI/EyeBrowBtn/Options"]
 layout_mode = 0
@@ -742,7 +740,7 @@ offset_bottom = 19.0
 min_value = 0.1
 max_value = 2.0
 step = 0.1
-value = 1.0
+value = 0.1
 
 [node name="Label" type="Label" parent="UI"]
 offset_left = 16.0
@@ -750,7 +748,8 @@ offset_top = 405.0
 offset_right = 449.0
 offset_bottom = 532.0
 text = "Todo:
-	-Change color option for different eyes
+	-Change colors from different eyes
+	-Fix script of single and double features
 	-Make Undo button with the last used option on click up
 	-Draw more examples, make example selection script"
 

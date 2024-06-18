@@ -1,7 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://byhjduhe6sr2"]
+[gd_scene load_steps=19 format=3 uid="uid://byhjduhe6sr2"]
 
 [ext_resource type="PackedScene" uid="uid://blghe3xfy04g5" path="res://3DModels/CharacterTemplateModel.fbx" id="1_alnb5"]
-[ext_resource type="Script" path="res://3DModels/deleteThis.gd" id="2_6vxyh"]
 [ext_resource type="Material" uid="uid://bmm4dn8m8rav5" path="res://3DModels/Eyes/EyeMaterial.tres" id="2_gwntk"]
 [ext_resource type="Material" uid="uid://b6q7ie6bbuj2i" path="res://3DModels/EyeBrows/brow1.tres" id="3_v11on"]
 [ext_resource type="Material" uid="uid://1lybsmdkhhfw" path="res://3DModels/Noses/nose1.tres" id="4_md6hq"]
@@ -12,11 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://bwoy3og2iirgk" path="res://3DModels/EyeBrows/brow1.png" id="8_nkgtn"]
 [ext_resource type="Texture2D" uid="uid://cb2ngq2br5dti" path="res://3DModels/Noses/nose1.png" id="9_hlroq"]
 [ext_resource type="Texture2D" uid="uid://btvm60hvwfclw" path="res://3DModels/Mouths/mouth1.png" id="10_ffbx7"]
-[ext_resource type="Script" path="res://Scripts/CharacterCreatorSectionHandler.gd" id="11_ju7vd"]
-[ext_resource type="Script" path="res://Scripts/EyeOptions.gd" id="13_y6m4a"]
-[ext_resource type="Script" path="res://Scripts/MouthOptions.gd" id="14_h7idi"]
-[ext_resource type="Script" path="res://Scripts/NoseOptions.gd" id="15_4e6km"]
-[ext_resource type="Script" path="res://Scripts/EyeBrowOptions.gd" id="16_pxn2v"]
+[ext_resource type="Script" path="res://CharacterCreatorSectionHandler.gd" id="11_ju7vd"]
+[ext_resource type="Script" path="res://BaseDoubleFeatureManipulation.gd" id="13_in3so"]
+[ext_resource type="Script" path="res://MouthOptions.gd" id="14_dx0gj"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_qyxfe"]
 sky_top_color = Color(0.0588235, 0.439216, 0.835294, 1)
@@ -54,7 +51,6 @@ transform = Transform3D(0.979575, 8.56372e-08, 0.201078, -8.74228e-08, 1, 0, 0.2
 
 [node name="Head" parent="." instance=ExtResource("1_alnb5")]
 transform = Transform3D(0.978274, 0, 0.207314, 0, 1, 0, -0.207314, 0, 0.978274, 1.48662, 0, 0)
-script = ExtResource("2_6vxyh")
 
 [node name="Node" type="Node" parent="Head"]
 
@@ -142,16 +138,16 @@ upper_fade = 1.70843e-05
 lower_fade = 2.4161e-05
 
 [node name="LeftBrow" type="Decal" parent="Head/Decals"]
-transform = Transform3D(-1, 2.98023e-08, 0, 0, -1.19249e-08, -1, 2.98023e-08, 1, -1.19249e-08, 0.185592, 3.409, -3.8542)
-size = Vector3(0.25, 0.935693, 0.25)
+transform = Transform3D(1, 1.49012e-08, 8.88178e-16, 0, 4.37114e-08, -1, -1.49012e-08, 1, 4.37114e-08, -0.187303, 3.46782, -3.75813)
+size = Vector3(0.25, 0.941699, 0.25)
 texture_albedo = ExtResource("8_nkgtn")
 emission_energy = 0.0
 upper_fade = 1.70843e-05
 lower_fade = 2.4161e-05
 
 [node name="RightBrow" type="Decal" parent="Head/Decals"]
-transform = Transform3D(1, 2.98023e-08, -2.66454e-15, 0, -4.37114e-08, -1, -2.98023e-08, 1, -4.37114e-08, -0.186, 3.409, -3.851)
-size = Vector3(0.25, 0.935693, 0.25)
+transform = Transform3D(-1, 1.49012e-08, -8.88178e-16, 0, -4.37114e-08, -1, 1.49012e-08, 1, -4.37114e-08, 0.174638, 3.46782, -3.75471)
+size = Vector3(0.25, 0.934863, 0.25)
 texture_albedo = ExtResource("8_nkgtn")
 emission_energy = 0.0
 upper_fade = 1.70843e-05
@@ -183,7 +179,7 @@ offset_top = 12.0
 offset_right = 229.0
 offset_bottom = 74.0
 text = "Eyes"
-script = ExtResource("13_y6m4a")
+script = ExtResource("13_in3so")
 
 [node name="EyeOptions" type="ItemList" parent="UI/EyeBtn"]
 visible = false
@@ -335,13 +331,14 @@ step = 0.01
 value = -0.1
 
 [node name="MouthBtn" type="Button" parent="UI"]
+visible = false
 offset_left = 18.0
 offset_top = 80.0
 offset_right = 229.0
 offset_bottom = 142.0
 text = "Mouth
 "
-script = ExtResource("14_h7idi")
+script = ExtResource("14_dx0gj")
 
 [node name="MouthOptions" type="ItemList" parent="UI/MouthBtn"]
 visible = false
@@ -365,10 +362,6 @@ offset_left = 132.0
 offset_top = 6.0
 offset_right = 393.0
 offset_bottom = 22.0
-min_value = -0.5
-max_value = 0.5
-step = 0.1
-value = 0.5
 
 [node name="MouthHeight" type="Label" parent="UI/MouthBtn/MouthOptions"]
 layout_mode = 0
@@ -384,10 +377,6 @@ offset_left = 135.0
 offset_top = 6.0
 offset_right = 395.0
 offset_bottom = 22.0
-min_value = -0.75
-max_value = 1.0
-step = 0.1
-value = -0.05
 
 [node name="MouthSize" type="Label" parent="UI/MouthBtn/MouthOptions"]
 layout_mode = 0
@@ -403,10 +392,6 @@ offset_left = 138.0
 offset_top = 6.0
 offset_right = 389.0
 offset_bottom = 22.0
-min_value = -2.0
-max_value = 2.0
-step = 0.1
-value = 1.1
 
 [node name="MouthRotation" type="Label" parent="UI/MouthBtn/MouthOptions"]
 layout_mode = 0
@@ -446,10 +431,6 @@ offset_left = 140.0
 offset_top = 7.0
 offset_right = 379.0
 offset_bottom = 23.0
-min_value = 0.1
-max_value = 2.0
-step = 0.1
-value = 1.0
 
 [node name="StretchMouth" type="Label" parent="UI/MouthBtn/MouthOptions"]
 layout_mode = 0
@@ -465,333 +446,35 @@ offset_left = 141.0
 offset_top = 3.0
 offset_right = 380.0
 offset_bottom = 19.0
-min_value = 0.1
-max_value = 2.0
-step = 0.1
-value = 1.0
-
-[node name="NoseBtn" type="Button" parent="UI"]
-offset_left = 18.0
-offset_top = 150.0
-offset_right = 229.0
-offset_bottom = 212.0
-text = "Nose
-"
-script = ExtResource("15_4e6km")
-
-[node name="Options" type="ItemList" parent="UI/NoseBtn"]
-visible = false
-layout_mode = 0
-offset_left = 233.0
-offset_top = -137.0
-offset_right = 646.0
-offset_bottom = 138.0
-
-[node name="Distance" type="Label" parent="UI/NoseBtn/Options"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 1.0
-offset_right = 129.0
-offset_bottom = 24.0
-text = "Position"
-
-[node name="PositionSlider" type="HSlider" parent="UI/NoseBtn/Options/Distance"]
-layout_mode = 0
-offset_left = 132.0
-offset_top = 6.0
-offset_right = 393.0
-offset_bottom = 22.0
-min_value = -0.5
-max_value = 0.5
-step = 0.1
-value = 0.5
-
-[node name="Height" type="Label" parent="UI/NoseBtn/Options"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 44.0
-offset_right = 111.0
-offset_bottom = 67.0
-text = "Height"
-
-[node name="HeightSlider" type="HSlider" parent="UI/NoseBtn/Options/Height"]
-layout_mode = 0
-offset_left = 135.0
-offset_top = 6.0
-offset_right = 395.0
-offset_bottom = 22.0
-min_value = -0.75
-max_value = 1.0
-step = 0.1
-value = -0.05
-
-[node name="Size" type="Label" parent="UI/NoseBtn/Options"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 83.0
-offset_right = 92.0
-offset_bottom = 106.0
-text = "Size"
-
-[node name="SizeSlider" type="HSlider" parent="UI/NoseBtn/Options/Size"]
-layout_mode = 0
-offset_left = 138.0
-offset_top = 6.0
-offset_right = 389.0
-offset_bottom = 22.0
-min_value = 0.1
-max_value = 2.0
-step = 0.1
-value = 1.1
-
-[node name="Rotation" type="Label" parent="UI/NoseBtn/Options"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 128.0
-offset_right = 129.0
-offset_bottom = 151.0
-text = "Rotation"
-
-[node name="LeftButton" type="Button" parent="UI/NoseBtn/Options/Rotation"]
-layout_mode = 0
-offset_left = 165.0
-offset_top = -4.0
-offset_right = 230.0
-offset_bottom = 28.0
-text = "<"
-
-[node name="RightButton" type="Button" parent="UI/NoseBtn/Options/Rotation"]
-layout_mode = 0
-offset_left = 281.0
-offset_top = -4.0
-offset_right = 346.0
-offset_bottom = 28.0
-text = ">"
-
-[node name="Squash" type="Label" parent="UI/NoseBtn/Options"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 160.0
-offset_right = 121.0
-offset_bottom = 183.0
-text = "Squash
-"
-
-[node name="SquashSlider" type="HSlider" parent="UI/NoseBtn/Options/Squash"]
-layout_mode = 0
-offset_left = 140.0
-offset_top = 7.0
-offset_right = 379.0
-offset_bottom = 23.0
-min_value = 0.1
-max_value = 2.0
-step = 0.1
-value = 0.1
-
-[node name="Stretch" type="Label" parent="UI/NoseBtn/Options"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 196.0
-offset_right = 119.0
-offset_bottom = 219.0
-text = "Stretch"
-
-[node name="StretchSlider" type="HSlider" parent="UI/NoseBtn/Options/Stretch"]
-layout_mode = 0
-offset_left = 141.0
-offset_top = 3.0
-offset_right = 380.0
-offset_bottom = 19.0
-min_value = 0.1
-max_value = 2.0
-step = 0.1
-value = 0.1
-
-[node name="EyeBrowBtn" type="Button" parent="UI"]
-offset_left = 19.0
-offset_top = 219.0
-offset_right = 230.0
-offset_bottom = 281.0
-text = "EyeBrow
-"
-script = ExtResource("16_pxn2v")
-
-[node name="Options" type="ItemList" parent="UI/EyeBrowBtn"]
-visible = false
-layout_mode = 0
-offset_left = 233.0
-offset_top = -137.0
-offset_right = 646.0
-offset_bottom = 138.0
-
-[node name="Distance" type="Label" parent="UI/EyeBrowBtn/Options"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 1.0
-offset_right = 129.0
-offset_bottom = 24.0
-text = "Position"
-
-[node name="PositionSlider" type="HSlider" parent="UI/EyeBrowBtn/Options/Distance"]
-layout_mode = 0
-offset_left = 132.0
-offset_top = 6.0
-offset_right = 393.0
-offset_bottom = 22.0
-min_value = -0.5
-max_value = 0.5
-step = 0.1
-value = 0.5
-
-[node name="Height" type="Label" parent="UI/EyeBrowBtn/Options"]
-layout_mode = 0
-offset_left = 4.0
-offset_top = 44.0
-offset_right = 111.0
-offset_bottom = 67.0
-text = "Height"
-
-[node name="HeightSlider" type="HSlider" parent="UI/EyeBrowBtn/Options/Height"]
-layout_mode = 0
-offset_left = 135.0
-offset_top = 6.0
-offset_right = 395.0
-offset_bottom = 22.0
-min_value = -1.0
-max_value = 0.5
-step = 0.1
-value = -0.1
-
-[node name="Size" type="Label" parent="UI/EyeBrowBtn/Options"]
-layout_mode = 0
-offset_left = 6.0
-offset_top = 83.0
-offset_right = 92.0
-offset_bottom = 106.0
-text = "Size"
-
-[node name="SizeSlider" type="HSlider" parent="UI/EyeBrowBtn/Options/Size"]
-layout_mode = 0
-offset_left = 138.0
-offset_top = 6.0
-offset_right = 389.0
-offset_bottom = 22.0
-min_value = 0.1
-max_value = 2.0
-step = 0.1
-value = 0.1
-
-[node name="Rotation" type="Label" parent="UI/EyeBrowBtn/Options"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 128.0
-offset_right = 129.0
-offset_bottom = 151.0
-text = "Rotation"
-
-[node name="LeftButton" type="Button" parent="UI/EyeBrowBtn/Options/Rotation"]
-layout_mode = 0
-offset_left = 165.0
-offset_top = -4.0
-offset_right = 230.0
-offset_bottom = 28.0
-text = "<"
-
-[node name="RightButton" type="Button" parent="UI/EyeBrowBtn/Options/Rotation"]
-layout_mode = 0
-offset_left = 281.0
-offset_top = -4.0
-offset_right = 346.0
-offset_bottom = 28.0
-text = ">"
-
-[node name="Squash" type="Label" parent="UI/EyeBrowBtn/Options"]
-layout_mode = 0
-offset_left = 9.0
-offset_top = 160.0
-offset_right = 121.0
-offset_bottom = 183.0
-text = "Squash
-"
-
-[node name="SquashSlider" type="HSlider" parent="UI/EyeBrowBtn/Options/Squash"]
-layout_mode = 0
-offset_left = 140.0
-offset_top = 7.0
-offset_right = 379.0
-offset_bottom = 23.0
-min_value = 0.1
-max_value = 2.0
-step = 0.1
-value = 1.0
-
-[node name="Stretch" type="Label" parent="UI/EyeBrowBtn/Options"]
-layout_mode = 0
-offset_left = 8.0
-offset_top = 196.0
-offset_right = 119.0
-offset_bottom = 219.0
-text = "Stretch"
-
-[node name="StretchSlider" type="HSlider" parent="UI/EyeBrowBtn/Options/Stretch"]
-layout_mode = 0
-offset_left = 141.0
-offset_top = 3.0
-offset_right = 380.0
-offset_bottom = 19.0
-min_value = 0.1
-max_value = 2.0
-step = 0.1
-value = 1.0
 
 [node name="Label" type="Label" parent="UI"]
-offset_left = 16.0
-offset_top = 405.0
-offset_right = 449.0
-offset_bottom = 532.0
+offset_left = 18.0
+offset_top = 294.0
+offset_right = 303.0
+offset_bottom = 371.0
 text = "Todo:
-	-Change color option for different eyes
-	-Make Undo button with the last used option on click up
+	-Change colors from different eyes
+	-Fix script of single and double features
 	-Draw more examples, make example selection script"
 
 [connection signal="pressed" from="UI/EyeBtn" to="UI" method="_on_eye_btn_pressed"]
-[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/EyeDistance/HSlider" to="UI/EyeBtn" method="_on_position_slider_value_changed"]
-[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/EyeHeight/EyeHeight" to="UI/EyeBtn" method="_on_feature_height_value_changed"]
-[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/EyeSize/EyeSize" to="UI/EyeBtn" method="_on_feature_size_value_changed"]
-[connection signal="button_down" from="UI/EyeBtn/EyeOptions/EyeRotation/EyeRotationLeft" to="UI/EyeBtn" method="_on_feature_rotation_left_button_down"]
-[connection signal="button_up" from="UI/EyeBtn/EyeOptions/EyeRotation/EyeRotationLeft" to="UI/EyeBtn" method="_on_feature_rotation_left_button_up"]
-[connection signal="button_down" from="UI/EyeBtn/EyeOptions/EyeRotation/EyeRotationRight" to="UI/EyeBtn" method="_on_feature_rotation_right_button_down"]
-[connection signal="button_up" from="UI/EyeBtn/EyeOptions/EyeRotation/EyeRotationRight" to="UI/EyeBtn" method="_on_feature_rotation_right_button_up"]
+[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/EyeDistance/HSlider" to="UI/EyeBtn" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/EyeHeight/EyeHeight" to="UI/EyeBtn" method="_on_eye_height_value_changed"]
+[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/EyeSize/EyeSize" to="UI/EyeBtn" method="_on_eye_size_value_changed"]
+[connection signal="button_down" from="UI/EyeBtn/EyeOptions/EyeRotation/EyeRotationLeft" to="UI/EyeBtn" method="_on_eye_rotation_left_button_down"]
+[connection signal="button_up" from="UI/EyeBtn/EyeOptions/EyeRotation/EyeRotationLeft" to="UI/EyeBtn" method="_on_eye_rotation_left_button_up"]
+[connection signal="button_down" from="UI/EyeBtn/EyeOptions/EyeRotation/EyeRotationRight" to="UI/EyeBtn" method="_on_eye_rotation_right_button_down"]
+[connection signal="button_up" from="UI/EyeBtn/EyeOptions/EyeRotation/EyeRotationRight" to="UI/EyeBtn" method="_on_eye_rotation_right_button_up"]
 [connection signal="color_changed" from="UI/EyeBtn/EyeOptions/EyeColor/ColorPickerButton" to="UI/EyeBtn" method="_on_color_picker_button_color_changed"]
-[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/SquashEyes/SquashEyesSlider" to="UI/EyeBtn" method="_on_squash_features_slider_value_changed"]
-[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/StretchEyes/StretchEyesSlider" to="UI/EyeBtn" method="_on_stretch_features_slider_value_changed"]
+[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/SquashEyes/SquashEyesSlider" to="UI/EyeBtn" method="_on_squash_eyes_slider_value_changed"]
+[connection signal="value_changed" from="UI/EyeBtn/EyeOptions/StretchEyes/StretchEyesSlider" to="UI/EyeBtn" method="_on_stretch_eyes_slider_value_changed"]
 [connection signal="pressed" from="UI/MouthBtn" to="UI" method="_on_mouth_btn_pressed"]
 [connection signal="value_changed" from="UI/MouthBtn/MouthOptions/MouthDistance/PositionSlider" to="UI/MouthBtn" method="_on_position_slider_value_changed"]
-[connection signal="value_changed" from="UI/MouthBtn/MouthOptions/MouthHeight/HeightSlider" to="UI/MouthBtn" method="_on_feature_height_value_changed"]
-[connection signal="value_changed" from="UI/MouthBtn/MouthOptions/MouthSize/SizeSlider" to="UI/MouthBtn" method="_on_feature_size_value_changed"]
-[connection signal="button_down" from="UI/MouthBtn/MouthOptions/MouthRotation/LeftButton" to="UI/MouthBtn" method="_on_feature_rotation_left_button_down"]
-[connection signal="button_up" from="UI/MouthBtn/MouthOptions/MouthRotation/LeftButton" to="UI/MouthBtn" method="_on_feature_rotation_left_button_up"]
-[connection signal="button_down" from="UI/MouthBtn/MouthOptions/MouthRotation/RightButton" to="UI/MouthBtn" method="_on_feature_rotation_right_button_down"]
-[connection signal="button_up" from="UI/MouthBtn/MouthOptions/MouthRotation/RightButton" to="UI/MouthBtn" method="_on_feature_rotation_right_button_up"]
-[connection signal="value_changed" from="UI/MouthBtn/MouthOptions/SquashMouth/SquashSlider" to="UI/MouthBtn" method="_on_squash_features_slider_value_changed"]
-[connection signal="value_changed" from="UI/MouthBtn/MouthOptions/StretchMouth/StretchSlider" to="UI/MouthBtn" method="_on_stretch_features_slider_value_changed"]
-[connection signal="pressed" from="UI/NoseBtn" to="UI" method="_on_nose_btn_pressed"]
-[connection signal="value_changed" from="UI/NoseBtn/Options/Distance/PositionSlider" to="UI/NoseBtn" method="_on_position_slider_value_changed"]
-[connection signal="value_changed" from="UI/NoseBtn/Options/Height/HeightSlider" to="UI/NoseBtn" method="_on_feature_height_value_changed"]
-[connection signal="value_changed" from="UI/NoseBtn/Options/Size/SizeSlider" to="UI/NoseBtn" method="_on_feature_size_value_changed"]
-[connection signal="button_down" from="UI/NoseBtn/Options/Rotation/LeftButton" to="UI/NoseBtn" method="_on_feature_rotation_left_button_down"]
-[connection signal="button_up" from="UI/NoseBtn/Options/Rotation/LeftButton" to="UI/NoseBtn" method="_on_feature_rotation_left_button_up"]
-[connection signal="button_down" from="UI/NoseBtn/Options/Rotation/RightButton" to="UI/NoseBtn" method="_on_feature_rotation_right_button_down"]
-[connection signal="button_up" from="UI/NoseBtn/Options/Rotation/RightButton" to="UI/NoseBtn" method="_on_feature_rotation_right_button_up"]
-[connection signal="value_changed" from="UI/NoseBtn/Options/Squash/SquashSlider" to="UI/NoseBtn" method="_on_squash_features_slider_value_changed"]
-[connection signal="value_changed" from="UI/NoseBtn/Options/Stretch/StretchSlider" to="UI/NoseBtn" method="_on_stretch_features_slider_value_changed"]
-[connection signal="pressed" from="UI/EyeBrowBtn" to="UI" method="_on_brow_btn_pressed"]
-[connection signal="value_changed" from="UI/EyeBrowBtn/Options/Distance/PositionSlider" to="UI/EyeBrowBtn" method="_on_position_slider_value_changed"]
-[connection signal="value_changed" from="UI/EyeBrowBtn/Options/Height/HeightSlider" to="UI/EyeBrowBtn" method="_on_feature_height_value_changed"]
-[connection signal="value_changed" from="UI/EyeBrowBtn/Options/Size/SizeSlider" to="UI/EyeBrowBtn" method="_on_feature_size_value_changed"]
-[connection signal="button_down" from="UI/EyeBrowBtn/Options/Rotation/LeftButton" to="UI/EyeBrowBtn" method="_on_feature_rotation_left_button_down"]
-[connection signal="button_up" from="UI/EyeBrowBtn/Options/Rotation/LeftButton" to="UI/EyeBrowBtn" method="_on_feature_rotation_left_button_up"]
-[connection signal="button_down" from="UI/EyeBrowBtn/Options/Rotation/RightButton" to="UI/EyeBrowBtn" method="_on_feature_rotation_right_button_down"]
-[connection signal="button_up" from="UI/EyeBrowBtn/Options/Rotation/RightButton" to="UI/EyeBrowBtn" method="_on_feature_rotation_right_button_up"]
-[connection signal="value_changed" from="UI/EyeBrowBtn/Options/Squash/SquashSlider" to="UI/EyeBrowBtn" method="_on_squash_features_slider_value_changed"]
-[connection signal="value_changed" from="UI/EyeBrowBtn/Options/Stretch/StretchSlider" to="UI/EyeBrowBtn" method="_on_stretch_features_slider_value_changed"]
+[connection signal="value_changed" from="UI/MouthBtn/MouthOptions/MouthHeight/HeightSlider" to="UI/MouthBtn" method="_on_height_slider_value_changed"]
+[connection signal="value_changed" from="UI/MouthBtn/MouthOptions/MouthSize/SizeSlider" to="UI/MouthBtn" method="_on_size_slider_value_changed"]
+[connection signal="button_down" from="UI/MouthBtn/MouthOptions/MouthRotation/LeftButton" to="UI/MouthBtn" method="_on_left_button_button_down"]
+[connection signal="button_up" from="UI/MouthBtn/MouthOptions/MouthRotation/LeftButton" to="UI/MouthBtn" method="_on_left_button_button_up"]
+[connection signal="button_down" from="UI/MouthBtn/MouthOptions/MouthRotation/RightButton" to="UI/MouthBtn" method="_on_right_button_button_down"]
+[connection signal="button_up" from="UI/MouthBtn/MouthOptions/MouthRotation/RightButton" to="UI/MouthBtn" method="_on_right_button_button_up"]
+[connection signal="value_changed" from="UI/MouthBtn/MouthOptions/SquashMouth/SquashSlider" to="UI/MouthBtn" method="_on_squash_slider_value_changed"]
+[connection signal="value_changed" from="UI/MouthBtn/MouthOptions/StretchMouth/StretchSlider" to="UI/MouthBtn" method="_on_stretch_slider_value_changed"]
