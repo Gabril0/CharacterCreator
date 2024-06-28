@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://byhjduhe6sr2"]
+[gd_scene load_steps=40 format=3 uid="uid://byhjduhe6sr2"]
 
 [ext_resource type="Material" uid="uid://bmm4dn8m8rav5" path="res://3DModels/Eyes/EyeMaterial.tres" id="2_gwntk"]
 [ext_resource type="Material" uid="uid://b6q7ie6bbuj2i" path="res://3DModels/EyeBrows/brow1.tres" id="3_v11on"]
@@ -6,8 +6,10 @@
 [ext_resource type="Material" uid="uid://c48vabvepktwy" path="res://3DModels/Mouths/mouth1.tres" id="4_pk71p"]
 [ext_resource type="Material" uid="uid://8k484pq2seug" path="res://3DModels/Hair/hair1.tres" id="6_h27ow"]
 [ext_resource type="Script" path="res://Scripts/CharacterCreatorSectionHandler.gd" id="11_ju7vd"]
+[ext_resource type="Texture2D" uid="uid://bh8dd7lbb8tc6" path="res://3DModels/Eyes/pupil_3.png" id="13_iugk7"]
 [ext_resource type="Script" path="res://Scripts/EyeOptions.gd" id="13_y6m4a"]
 [ext_resource type="Script" path="res://Scripts/MouthOptions.gd" id="14_h7idi"]
+[ext_resource type="Texture2D" uid="uid://dyt34aghfd8bj" path="res://3DModels/Eyes/eye_3.png" id="14_mi6qs"]
 [ext_resource type="Script" path="res://Scripts/NoseOptions.gd" id="15_4e6km"]
 [ext_resource type="Script" path="res://Scripts/EyeBrowOptions.gd" id="16_pxn2v"]
 [ext_resource type="Texture2D" uid="uid://dqfeeyd01215e" path="res://3DModels/Eyes/eye_1.png" id="18_fmrdv"]
@@ -947,15 +949,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.12594)
 [node name="RightEye" type="Decal" parent="Head/Decals"]
 transform = Transform3D(1, 1.04308e-07, -7.10543e-15, 8.88178e-16, -4.37114e-08, -1, -1.04308e-07, 1, -4.37114e-08, 0.329397, 3.17489, -3.812)
 size = Vector3(0.5, 1, 0.5)
-texture_albedo = ExtResource("18_y2oqm")
+texture_albedo = ExtResource("13_iugk7")
 emission_energy = 0.0
 upper_fade = 1.70843e-05
 lower_fade = 2.4161e-05
 
 [node name="RightEyeBG" type="Decal" parent="Head/Decals/RightEye"]
-transform = Transform3D(1, -1.49012e-08, 2.66454e-15, 1.49012e-08, 1, 0, 3.55271e-15, 3.55271e-15, 1, 0, 0.0289755, 0)
+transform = Transform3D(1, -1.49012e-08, 2.66454e-15, 1.49012e-08, 1, 0, 3.55271e-15, 3.55271e-15, 1, 0, 0.001, 0)
 size = Vector3(0.5, 1, 0.5)
-texture_albedo = ExtResource("18_fmrdv")
+texture_albedo = ExtResource("14_mi6qs")
 emission_energy = 0.0
 upper_fade = 1.70843e-05
 lower_fade = 2.4161e-05
@@ -969,7 +971,7 @@ upper_fade = 1.70843e-05
 lower_fade = 2.4161e-05
 
 [node name="LeftEyeBG" type="Decal" parent="Head/Decals/LeftEye"]
-transform = Transform3D(1, 1.49012e-08, 8.88179e-16, -1.49012e-08, 1, 3.55271e-15, 8.88178e-16, 3.55271e-15, 1, 1.19209e-07, 0.0355258, 0)
+transform = Transform3D(1, 1.49012e-08, 8.88178e-16, -1.49012e-08, 1, 3.55271e-15, 8.88178e-16, 3.55271e-15, 1, 0, 0.001, 0)
 size = Vector3(0.5, 1, 0.5)
 texture_albedo = ExtResource("18_fmrdv")
 emission_energy = 0.0

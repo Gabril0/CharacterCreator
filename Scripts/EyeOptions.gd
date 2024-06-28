@@ -34,7 +34,9 @@ func file_search():
 			file_name = dir.get_next()
 		dir.list_dir_end()
 		feature_left.texture_albedo = load("res://3DModels/Eyes/eye_1.png")
+		
 		var eye_list = $EyeOptions/EyeList
+		var temp_eye_paths = []
 		
 		for i in range(item_list.size()):
 			var bg = load(eyes_path + item_list[i]) #getting the images
@@ -51,14 +53,15 @@ func file_search():
 				for x in range(bg_image.get_width()):
 					for y in range(bg_image.get_height()):
 						var pupil_color = pupil_image.get_pixel(x, y)
-						if pupil_color.a != 0 && bg_image.get_pixel(x, y) != pupil_color: # changing each that`s different
+						if pupil_color.a != 0 && bg_image.get_pixel(x, y) != pupil_color: #changing each that`s different
 							blended_texture.set_pixel(x, y, pupil_color)
 							
-			var temp_save_path = "temp_eye" + str(i) + ".png"
+			var temp_save_path = "res://3DModels/EyeIcons/" + "temp_eye" + str(i) + ".png"
 			blended_texture.save_png(temp_save_path)
-			var new_texture = load("res://" + temp_save_path)#maybe optimize later, for some reason it doesn`t let me just use or compress this image into
+			temp_eye_paths.append(temp_save_path)
 			#the right format, so i need to save and then delete it
-			dir.remove("res://" + temp_save_path) #change this to make it run, probably is deleting before the access
+		for path in temp_eye_paths:
+			var new_texture = load(path)
 			eye_list.add_icon_item(new_texture)
 
 func _on_item_list_item_selected(index: int) -> void:
@@ -67,5 +70,4 @@ func _on_item_list_item_selected(index: int) -> void:
 	feature_right.texture_albedo = load(eyes_path + pupil_list[index])
 	feature_left.get_child(0).texture_albedo = load(eyes_path + item_list[index])
 	feature_right.get_child(0).texture_albedo = load(eyes_path + item_list[index])
-	
 
