@@ -14,6 +14,8 @@ var original_feature_right_rotation
 var is_holding_feature_left_rotation
 var is_holding_feature_right_rotation
 
+var item_list = []
+
 #UI References
 var feature_options
 @onready var head: Node3D = $"../../Head"
@@ -81,4 +83,8 @@ func _on_squash_features_slider_value_changed(value: float) -> void:
 func _on_color_picker_button_color_changed(color: Color) -> void:
 	feature_left.modulate = color
 	feature_right.modulate = color
+	
+func _on_item_list_item_selected(index: int) -> void:
+	feature_left.textures.albedo = item_list[index]
+	feature_right.textures.albedo = item_list[index]
 
