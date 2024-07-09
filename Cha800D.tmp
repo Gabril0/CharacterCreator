@@ -248,7 +248,7 @@ shadow_mesh = SubResource("ArrayMesh_okv7t")
 [node name="Node3D" type="Node3D"]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(-0.978072, -0.121122, -0.169425, -0.202304, 0.745811, 0.634696, 0.0494835, 0.655054, -0.75396, 0.65353, 5.94761, -12.5577)
+transform = Transform3D(-0.871777, -0.432422, 0.230254, -0.202304, 0.745811, 0.634696, -0.446182, 0.506732, -0.737662, 0.65353, 5.94761, -12.5577)
 shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
@@ -878,7 +878,7 @@ text = "Todo:
 "
 
 [node name="Head" type="Node3D" parent="."]
-transform = Transform3D(0.904708, 0, 0.426032, 0, 1, 0, -0.426032, 0, 0.904708, 3, 0, -0.42409)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.42409)
 
 [node name="3dModel" type="Node3D" parent="Head"]
 
